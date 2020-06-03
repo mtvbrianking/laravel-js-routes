@@ -16,15 +16,13 @@ composer require bmatovu/laravel-js-routes
 
 ### Setup
 
-Set application URL in the environment file.
+Set application URL in the environment file; `.env`.
 
 ```
 APP_URL="http://localhost:8000"
 ```
 
-Add application url to base layout head meta.
-
-This will make it available to Javascript
+Add application url to base layout head meta; usually in `resources/views/layouts/app.blade.php`
 
 ```html
 <meta name="app-url" content="{{ config('app.url') }}">
@@ -36,17 +34,17 @@ This will make it available to Javascript
 php artisan js-routes:generate
 ```
 
-Routes will be written to a json file
+Routes will be written to a json file: `resources/js/routes.json`
 
 ### Publish resources
 
-Publish Javascript router.
+Publish Javascript router to `resources/js/router.js`
 
 ```bash
 php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider" --tag="resources"
 ```
 
-Load Javascript router.
+Load Javascript router; usually from `resources/js/bootstrap.js`
 
 ```js
 var router = require('./router.js');
@@ -65,7 +63,15 @@ npm run dev
 In you routes file; `web.php` make sure to use named routes.
 
 ```php
-Route::get()->name('');
+$int = '^\d+$';
+
+Route::pattern('user', $int);
+
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+    Route::get('/', 'UserController@index')->name('index');
+    // ...
+    Route::delete('/{user}', 'UserController@destroy')->name('destroy');
+});
 ```
 
 In Javascript; just get the route by name.
@@ -73,11 +79,11 @@ In Javascript; just get the route by name.
 ```js
 ajax: {
     type: 'GET',
-    url: route('users.index')
+    url: route('users.index') // http://localhost:8000/users
 }
 
 ajax: {
     type: 'DELETE',
-    url: route('users.delete', user.id)
+    url: route('users.destroy', user.id) // http://localhost:8000/users/1
 }
 ```

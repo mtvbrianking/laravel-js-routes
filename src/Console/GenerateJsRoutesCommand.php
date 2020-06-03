@@ -8,8 +8,8 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\File;
 
 /**
- * @link https://ideas.hexbridge.com/how-to-use-laravel-routes-in-javascript-4d9c484a0d97 Source
- * @link https://medium.com/@jonan.pineda/thank-you-for-this-post-d1d32c991757
+ * @see https://ideas.hexbridge.com/how-to-use-laravel-routes-in-javascript-4d9c484a0d97
+ * @see https://medium.com/@jonan.pineda/thank-you-for-this-post-d1d32c991757
  */
 class GenerateJsRoutesCommand extends Command
 {
