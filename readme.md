@@ -77,13 +77,15 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 In Javascript; just get the route by name.
 
 ```js
-ajax: {
+$.ajax({
     type: 'GET',
     url: route('users.index') // http://localhost:8000/users
-}
+});
 
-ajax: {
+// Or
+
+$.ajax({
     type: 'DELETE',
     url: route('users.destroy', user.id) // http://localhost:8000/users/1
-}
+});
 ```
