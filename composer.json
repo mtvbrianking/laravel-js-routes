@@ -2,7 +2,7 @@
   "name": "bmatovu/laravel-js-routes",
   "description": "Laravel Javascript routes.",
   "homepage": "https://github.com/mtvbrianking/laravel-js-routes",
-  "type": "project",
+  "type": "library",
   "license": "MIT",
   "keywords": [
     "laravel",
