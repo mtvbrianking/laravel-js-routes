@@ -1,10 +1,12 @@
-## Laravel Package Boilerplate.
+## Laravel JS Routes.
 
 [![Build Status](https://travis-ci.org/mtvbrianking/laravel-js-routes.svg?branch=master)](https://travis-ci.org/mtvbrianking/laravel-js-routes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mtvbrianking/laravel-js-routes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mtvbrianking/laravel-js-routes/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/mtvbrianking/laravel-js-routes/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mtvbrianking/laravel-js-routes/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/269003528/shield?branch=master)](https://github.styleci.io/repos/269003528)
 [![Documentation](https://img.shields.io/badge/Documentation-Blue)](https://mtvbrianking.github.io/laravel-js-routes)
+
+This minimalistic package will help you access exisiting PHP routes via JavaScript. 
 
 ### [Installation](https://packagist.org/packages/bmatovu/laravel-js-routes)
 
@@ -22,7 +24,7 @@ Set application URL in the environment file; `.env`.
 APP_URL="http://localhost:8000"
 ```
 
-Add application url to base layout head meta; usually in `resources/views/layouts/app.blade.php`
+Add application URL to base layout head meta; usually in `resources/views/layouts/app.blade.php`
 
 ```html
 <meta name="app-url" content="{{ config('app.url') }}">
@@ -38,13 +40,13 @@ Routes will be written to a json file: `resources/js/routes.json`
 
 ### Publish resources
 
-Publish Javascript router to `resources/js/router.js`
+Publish JavaScript router to `resources/js/router.js`
 
 ```bash
 php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider" --tag="resources"
 ```
 
-Load Javascript router; usually from `resources/js/bootstrap.js`
+Load JavaScript router; usually from `resources/js/bootstrap.js`
 
 ```js
 var router = require('./router.js');
@@ -52,7 +54,7 @@ var router = require('./router.js');
 window.route = router.route;
 ```
 
-### Complie JS routes
+### Compile JS routes
 
 ```bash
 npm run dev
@@ -74,7 +76,7 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 });
 ```
 
-In Javascript; just get the route by name.
+In JavaScript; just get the route by name.
 
 ```js
 $.ajax({
