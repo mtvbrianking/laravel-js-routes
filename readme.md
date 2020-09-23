@@ -89,7 +89,7 @@ $.ajax({
 $.ajax({
     type: "GET",
     url: route("posts.index", {"published-at": "2020-09-23 16:42:12"}) 
-    // http://localhost:8000/posts?published-at=2020-09-16%2005:48:12
+    // http://localhost:8000/posts?published-at=2020-09-23%2016:42:12
 });
 
 $.ajax({
