@@ -67,12 +67,13 @@ In you routes file; `web.php` make sure to use named routes.
 ```php
 $int = '^\d+$';
 
-Route::pattern('user', $int);
+Route::pattern('post', $int);
+Route::pattern('comment', $int);
 
-Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-    Route::get('/', 'UserController@index')->name('index');
-    // ...
-    Route::delete('/{user}', 'UserController@destroy')->name('destroy');
+Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
+    Route::get('/', 'PostController@index')->name('index');
+    Route::get('/{post}/comments/{comment?}', 'PostController@comments')->name('comments');
+    Route::delete('/{post}', 'PostController@destroy')->name('destroy');
 });
 ```
 
@@ -80,14 +81,32 @@ In JavaScript; just get the route by name.
 
 ```js
 $.ajax({
-    type: 'GET',
-    url: route('users.index') // http://localhost:8000/users
+    type: "GET",
+    url: route("posts.index") 
+    // http://localhost:8000/posts
 });
 
-// Or
+$.ajax({
+    type: "GET",
+    url: route("posts.index", {"published-at": "2020-09-23 16:42:12"}) 
+    // http://localhost:8000/posts?published-at=2020-09-16%2005:48:12
+});
 
 $.ajax({
-    type: 'DELETE',
-    url: route('users.destroy', user.id) // http://localhost:8000/users/1
+    type: "GET",
+    url: route("posts.comments", {"post": post.id}) 
+    // http://localhost:8000/posts/1/comments
+});
+
+$.ajax({
+    type: "GET",
+    url: route("posts.comments", {"post": post.id, "comment": comment.id}) 
+    // http://localhost:8000/posts/1/comments/4
+});
+
+$.ajax({
+    type: "DELETE",
+    url: route("posts.destroy", {"post": post.id}) 
+    // http://localhost:8000/posts/1
 });
 ```
