@@ -43,7 +43,7 @@ Routes will be written to a json file: `resources/js/routes.json`
 Publish JavaScript router to `resources/js/router.js`
 
 ```bash
-php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider" --tag="resources"
+php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider"
 ```
 
 Load JavaScript router; usually from `resources/js/bootstrap.js`
