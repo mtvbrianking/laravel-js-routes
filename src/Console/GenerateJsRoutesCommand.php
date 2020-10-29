@@ -67,18 +67,43 @@ class GenerateJsRoutesCommand extends Command
     {
         $this->line('Generating routes for Javascript.');
 
-        $routes = collect($this->router->getRoutes());
+        $jsRoutes = collect($this->router->getRoutes())
+            ->filter(function ($route) {
+                return ! $this->matches(config('js-routes.excluded'), $route->uri);
+            })
+            ->reduce(function ($jsRoutes, $route) {
+                $jsRoutes[$route->getName()] = $route->uri;
 
-        $jsRoutes = $routes->reduce(function ($jsRoutes, $route) {
-            $jsRoutes[$route->getName()] = $route->uri;
-
-            return $jsRoutes;
-        }, []);
+                return $jsRoutes;
+            }, []);
 
         $path = $this->option('path');
 
         $this->file->put($path, json_encode($jsRoutes, JSON_PRETTY_PRINT));
 
         $this->line("Routes saved to '{$path}'.");
+    }
+
+    /**
+     * Perform a regular expression match.
+     *
+     * @param array  $patterns
+     * @param string $subject
+     *
+     * @return bool
+     */
+    protected function matches($patterns, $subject)
+    {
+        $isMatched = false;
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $subject)) {
+                $isMatched = true;
+
+                break;
+            }
+        }
+
+        return $isMatched;
     }
 }

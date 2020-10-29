@@ -62,7 +62,7 @@ npm run dev
 
 ### Usage
 
-In you routes file; `web.php` make sure to use named routes.
+In your routes file; `web.php` make sure to use named routes.
 
 ```php
 $int = '^\d+$';
