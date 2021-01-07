@@ -19,15 +19,14 @@ class GenerateJsRoutesCommand extends Command
      * @var string
      */
     protected $signature = 'js-routes:generate
-                                {--p|path=resources/js/routes.json : Path for JS routes file.}';
+                                {--p|path=resources/js/routes.json : JS routes file path.}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate routes for Javascript.
-    > Run `npm run dev` to update routes cache.';
+    protected $description = 'Generate routes for Javascript.';
 
     /**
      * Application router.
@@ -65,7 +64,7 @@ class GenerateJsRoutesCommand extends Command
      */
     public function handle()
     {
-        $this->line('Generating routes for Javascript.');
+        $this->info('Generating routes for Javascript...');
 
         $jsRoutes = collect($this->router->getRoutes())
             ->filter(function ($route) {
@@ -81,7 +80,9 @@ class GenerateJsRoutesCommand extends Command
 
         $this->file->put($path, json_encode($jsRoutes, JSON_PRETTY_PRINT));
 
-        $this->line("Routes saved to '{$path}'.");
+        $this->info("Routes saved to '{$path}'.");
+
+        $this->info("Run 'npm run dev' to update routes cache.");
     }
 
     /**
