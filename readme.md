@@ -49,9 +49,7 @@ php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider"
 Load JavaScript router; usually from `resources/js/bootstrap.js`
 
 ```js
-var router = require('./router.js');
-
-window.route = router.route;
+window.route = require('./router.js').route;
 ```
 
 ### Compile JS routes
