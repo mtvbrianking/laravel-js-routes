@@ -20,7 +20,7 @@ composer require bmatovu/laravel-js-routes
 
 Set application URL in the environment file; `.env`.
 
-```
+```properties
 APP_URL="http://localhost:8000"
 ```
 
@@ -62,7 +62,7 @@ npm run dev
 
 ### Usage
 
-In your routes file; `web.php` make sure to use named routes.
+Sample Laravel (named) routes
 
 ```php
 $int = '^\d+$';
@@ -79,34 +79,28 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
 
 In JavaScript; just get the route by name.
 
-```js
-$.ajax({
-    type: "GET",
-    url: route("posts.index") 
-    // http://localhost:8000/posts
-});
+```javascript
+axios.get(route('posts.index'));
+// http://localhost:8000/posts
 
-$.ajax({
-    type: "GET",
-    url: route("posts.index", {"published-at": "2020-09-23 16:42:12"}) 
-    // http://localhost:8000/posts?published-at=2020-09-23%2016:42:12
-});
+axios.get(route('posts.comments', {'post': post.id}));
+// http://localhost:8000/posts/1/comments
 
-$.ajax({
-    type: "GET",
-    url: route("posts.comments", {"post": post.id}) 
-    // http://localhost:8000/posts/1/comments
-});
+axios.get(route('posts.comments', {'post': post.id, 'comment': comment.id}));
+// http://localhost:8000/posts/1/comments/4
 
-$.ajax({
-    type: "GET",
-    url: route("posts.comments", {"post": post.id, "comment": comment.id}) 
-    // http://localhost:8000/posts/1/comments/4
-});
+axios.get(route('posts.comments', {'post': post.id, 'comment': comment.id, 'page': 2, 'size': 10}));
+// http://localhost:8000/posts/1/comments/4?page=2&size=10
 
-$.ajax({
-    type: "DELETE",
-    url: route("posts.destroy", {"post": post.id}) 
-    // http://localhost:8000/posts/1
-});
+axios.delete(route('posts.destroy', {'post': post.id}));
+// http://localhost:8000/posts/1
+
+axios.get(route('posts.index', {'published-at': '2020-09-23 16:42:12'}));
+// http://localhost:8000/posts?published-at=2020-09-23%2016:42:12
+
+axios.get(route('posts.index', {'with': ['author', 'comments']}));
+// http://localhost:8000/posts?with=author,comments
+
+axios.get(route('posts.index', {'with[0]': 'author', 'with[1]': 'comments'}));
+// http://localhost:8000/posts?with[0]=author&with[1]=comments
 ```
