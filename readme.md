@@ -42,16 +42,29 @@ You should `.gitignore` the above auto-generated `routes.json` file.
 
 ### Publish resources
 
-Publish JavaScript router to `resources/js/router.js`
+Publish JavaScript router to `resources/js`
 
 ```bash
 php artisan vendor:publish --provider="Bmatovu\JsRoutes\JsRoutesServiceProvider"
 ```
 
-Load JavaScript router; usually from `resources/js/bootstrap.js`
+**Using Webpack | Laravel Mix**
+
+Load JavaScript router; usually in `resources/js/app.js`
 
 ```js
 window.route = require('./router.js').route;
+
+console.log(route('login'));
+```
+
+**Using ViteJS**
+
+```js
+import { route } from './router.mjs';
+window.route = route;
+
+console.log(route('login'));
 ```
 
 ### Compile JS routes
