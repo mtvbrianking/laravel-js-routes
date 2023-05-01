@@ -38,7 +38,7 @@ php artisan js-routes:generate
 
 Routes will be written to a json file: `resources/js/routes.json`
 
-You should `.gitignore` the above auto-generated `routes.json` file.
+_You should `.gitignore` the above auto-generated file._
 
 ### Publish resources
 

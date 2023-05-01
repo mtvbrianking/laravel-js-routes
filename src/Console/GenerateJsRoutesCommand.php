@@ -68,7 +68,7 @@ class GenerateJsRoutesCommand extends Command
 
         $jsRoutes = collect($this->router->getRoutes())
             ->filter(function ($route) {
-                return ! $this->matches(config('js-routes.excluded'), $route->uri);
+                return !$this->matches(config('js-routes.excluded'), $route->uri);
             })
             ->reduce(function ($jsRoutes, $route) {
                 $jsRoutes[$route->getName()] = $route->uri;

@@ -9,7 +9,7 @@ use Mockery as m;
 
 class GenerateJsRoutesCommandTest extends TestCase
 {
-    public $jsonRoutesFile = __DIR__.'/../resources/js/routes.json';
+    public $jsonRoutesFile = __DIR__ . '/../resources/js/routes.json';
 
     /**
      * {@inherit}

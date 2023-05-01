@@ -14,11 +14,12 @@ class JsRoutesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/js-routes.php' => config_path('js-routes.php'),
+            __DIR__ . '/../config/js-routes.php' => config_path('js-routes.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__.'/../resources/js/router.js' => resource_path('js/router.js'),
+            __DIR__ . '/../resources/js/router.js' => resource_path('js/router.js'),
+            __DIR__ . '/../resources/js/router.mjs' => resource_path('js/router.mjs'),
         ], 'resources');
 
         $this->commands([
@@ -33,6 +34,6 @@ class JsRoutesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/js-routes.php', 'js-routes');
+        $this->mergeConfigFrom(__DIR__ . '/../config/js-routes.php', 'js-routes');
     }
 }
